@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mi Legado Cumbre Salamar | Reservas, pedidos y café</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#inicio"><img src="assets/logo.png" alt="Logo Mi Legado"/><span>Mi Legado Cumbre Salamar</span></a>
+    <button class="menu-toggle" id="menuToggle">☰</button>
+    <nav id="navMenu">
+      <a href="#inicio">Inicio</a><a href="#tienda">Tienda</a><a href="#menu">Menú</a><a href="#reservar">Reservarr</a><a href="#ubicacion">Ubicación</a><a href="#admin">Acceso propietario</a>
+      <button class="cart-btn" id="openCart">🛒 <b id="cartCount">0</b></button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="hero-text reveal">
+        <p class="eyebrow">Café artesanal orgánico · Oaxaca</p>
+        <h1>Reserva, ordena y disfruta <span>Mi Legado Cumbre Salamar</span></h1>
+        <p>Café de altura, cocina oaxaqueña, pedidos sincronizados con mesa y panel para controlar reservaciones.</p>
+        <div class="hero-actions"><a class="btn primary" href="#reservar">Apartar mesa</a><a class="btn ghost" href="#tienda">Comprar café</a></div>
+      </div>
+      <div class="coffee-showcase reveal"><div class="professional-bag"><div class="bag-top"></div><div class="bag-label"><img src="assets/logo.png"/><h3>Café de altura</h3><p>Molido · En grano</p><strong>250 g · 500 g · 1 kg</strong></div></div></div>
+    </section>
+
+    <section class="badges">
+      <article><b>Reservas en tiempo real</b><span>Mesas disponibles, pendientes y ocupadas.</span></article>
+      <article><b>Pedidos por mesa</b><span>El carrito se liga a la reservación.</span></article>
+      <article><b>WhatsApp al cliente</b><span>Mensaje de confirmación listo para enviar.</span></article>
+      <article><b>Estadísticas</b><span>Ventas, reservas y productos más vendidos.</span></article>
+    </section>
+
+    <section class="section" id="tienda">
+      <div class="section-title"><p class="eyebrow">Tienda de café</p><h2>Configura tu café</h2></div>
+      <div class="shop-grid">
+        <div class="config-card reveal">
+          <h3>Arma tu pedido</h3>
+          <label>Tipo de café</label><div class="pill-group" data-group="tipo"><button class="pill active">Molido</button><button class="pill">En grano</button></div>
+          <label>Tueste</label><div class="pill-group" data-group="tueste"><button class="pill">Claro</button><button class="pill active">Medio</button><button class="pill">Oscuro</button></div>
+          <label>Presentación</label><select id="coffeeSize"><option value="250 g" data-price="160">250 g - $160</option><option value="500 g" data-price="280">500 g - $280</option><option value="1 kg" data-price="520">1 kg - $520</option></select>
+          <label>Cantidad</label><div class="qty"><button data-dec="coffeeQty">−</button><input id="coffeeQty" value="1" readonly><button data-inc="coffeeQty">+</button></div>
+          <button class="btn primary full" id="addCoffee">Agregar café al pedido</button>
+        </div>
+        <div class="product-row reveal"><img class="bag-photo" src="assets/empaque-original.jpeg" alt="Empaque de café"><div><h3>Empaque profesional</h3><p>Presentación premium con café de Oaxaca. Puedes cambiar precios y productos desde el código.</p></div></div>
+      </div>
+    </section>
+
+    <section class="section dark" id="menu">
+      <div class="section-title"><p class="eyebrow">Cocina restaurante</p><h2>Menú destacado</h2></div>
+      <div class="filters"><button class="filter active" data-cat="todos">Todo</button><button class="filter" data-cat="desayunos">Desayunos</button><button class="filter" data-cat="comida">Comida</button><button class="filter" data-cat="bebidas">Bebidas</button></div>
+      <div class="menu-grid" id="menuGrid"></div>
+    </section>
+
+    <section class="section" id="reservar">
+      <div class="section-title"><p class="eyebrow">Reservaciones</p><h2>Aparta tu mesa</h2></div>
+      <div class="reservation-wrap">
+        <form class="reservation-form" id="reservationForm">
+          <input required id="resName" placeholder="Nombre completo" />
+          <input required id="resPhone" placeholder="WhatsApp del cliente: 9511234567" />
+          <input required id="resDate" type="date" />
+          <select id="resTime"><option>8:00 AM</option><option>10:00 AM</option><option>1:00 PM</option><option>4:00 PM</option><option>7:00 PM</option></select>
+          <select id="resPeople"><option>2 personas</option><option>3 personas</option><option>4 personas</option><option>5 personas</option><option>6+ personas</option></select>
+          <textarea id="resNotes" placeholder="Notas: cumpleaños, terraza, silla para niño, etc."></textarea>
+        </form>
+        <div class="table-map">
+          <div class="map-head"><h3>Selecciona tu mesa</h3><button class="btn tiny" id="refreshTables">Actualizar</button></div>
+          <div class="tables" id="tables"></div>
+          <div class="legend"><span class="ok"></span>Disponible <span class="pending"></span>Pendiente <span class="busy"></span>Ocupada <span class="sel"></span>Seleccionada</div>
+          <button class="btn primary full" id="sendReservation">Enviar solicitud de reserva</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section admin" id="admin">
+      <div class="section-title"><p class="eyebrow">Acceso propietario</p><h2>Panel privado del restaurante</h2><p class="muted">Los clientes solo verán la página de venta, menú, ubicación, reservación y pedido. Para entrar al panel escribe la contraseña del propietario.</p></div>
+      <div class="owner-login" id="ownerLogin">
+        <h3>Entrar al panel</h3>
+        <p class="muted">Contraseña demo: <b>1234</b>. Puedes cambiarla en el archivo <b>script.js</b>.</p>
+        <input id="ownerPassword" type="password" placeholder="Contraseña del propietario" />
+        <button class="btn primary full" id="ownerAccess">Abrir panel</button>
+      </div>
+      <div class="owner-content" id="adminContent">
+        <div class="section-title"><p class="eyebrow">Panel administrativo local</p><h2>Reservaciones, mesas, pedidos y estadísticas</h2><p class="muted">Este panel guarda información en el navegador con LocalStorage. Para varios dispositivos se necesita backend/base de datos.</p><button class="btn tiny" id="ownerLogout">Cerrar panel</button></div>
+        <div class="admin-tabs"><button class="tab active" data-tab="calendar">Calendario</button><button class="tab" data-tab="orders">Pedidos por mesa</button><button class="tab" data-tab="bills">Cuentas / Cobros</button><button class="tab" data-tab="stats">Estadísticas</button></div>
+        <div class="admin-panel active" id="calendarPanel">
+          <div class="admin-toolbar"><input type="date" id="adminDate"><button class="btn tiny" id="clearOld">Limpiar datos demo</button></div>
+          <div class="table-responsive"><table><thead><tr><th>Hora</th><th>Mesa</th><th>Cliente</th><th>Personas</th><th>Estado</th><th>Acciones</th></tr></thead><tbody id="reservationList"></tbody></table></div>
+        </div>
+        <div class="admin-panel" id="ordersPanel"><div id="ordersByTable" class="orders-grid"></div></div>
+        <div class="admin-panel" id="billsPanel">
+          <div class="bill-summary" id="billSummary"></div>
+          <div class="table-responsive"><table><thead><tr><th>Cuenta</th><th>Detalle</th><th>Total</th><th>Estado</th><th>Acciones</th></tr></thead><tbody id="billList"></tbody></table></div>
+        </div>
+        <div class="admin-panel" id="statsPanel"><div class="stats-grid" id="statsGrid"></div><div class="top-products" id="topProducts"></div></div>
+      </div>
+    </section>
+
+    <section class="section location" id="ubicacion"><div><p class="eyebrow">Visítanos</p><h2>Rancho Salamar</h2><p>Encuéntranos en Google Maps y ven a disfrutar café artesanal y cocina oaxaqueña.</p><a class="btn primary" target="_blank" href="https://maps.app.goo.gl/go8uh2RTEQsAyXDD6">Abrir Google Maps</a></div><iframe title="Mapa Rancho Salamar" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3813.8334132895466!2d-97.84166239999999!3d17.0807993!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85c87f001011023f%3A0xa14006e0561a90d6!2sRancho%20Salamar!5e0!3m2!1ses-419!2smx!4v1783106380980!5m2!1ses-419!2smx" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></section>
+  </main>
+
+  <aside class="cart-panel" id="cartPanel"><div class="cart-head"><h3>Mi pedido</h3><button id="closeCart">×</button></div><div id="cartItems"></div><div class="cart-total"><span>Total</span><b id="cartTotal">$0.00</b></div><label>Sincronizar con mesa</label><select id="orderTable"><option value="">Sin mesa</option></select><select id="orderType"><option>Pedido para llevar</option><option>Comer aquí</option><option>Reservar y pedir</option></select><textarea id="orderNotes" placeholder="Notas del pedido"></textarea><button class="btn whatsapp full" id="sendOrder">Guardar pedido y enviar WhatsApp</button></aside>
+  <button class="floating-cart" id="floatingCart">🛒 <b id="floatCount">0</b></button>
+  <footer>© 2026 Mi Legado Cumbre Salamar · Café Artesanal de Oaxaca</footer>
+  <script src="script.js"></script>
+</body>
+</html>
