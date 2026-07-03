@@ -1,4 +1,4 @@
-const WHATSAPP_NEGOCIO = '529511234567'; // Cambia este número por el WhatsApp del restaurante con lada: 52 + número
+const WHATSAPP_NEGOCIO = '525567373566'; // Cambia este número por el WhatsApp del restaurante con lada: 52 + número
 const OWNER_PASSWORD = '05'; // Cambia esta contraseña para entrar al panel del propietario
 const $ = (s) => document.querySelector(s);
 const $$ = (s) => document.querySelectorAll(s);
